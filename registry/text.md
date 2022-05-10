@@ -1,5 +1,7 @@
 # DBUF Text Symbols
 
+Subject to change until core semantics are settled
+
 A string or a substring is considered a Scope in the [codec](../codec.md)
 
 ### Start of substring
@@ -12,33 +14,33 @@ A string or a substring is considered a Scope in the [codec](../codec.md)
 - ID: 2
 - Used to repeat previously seen data
 - Consumes next varint as distance
-- Zero based, a distance of zero means the first previous value
-- Distance applies to:
+- Zero based, a distance of zero means the first eligible Item closest to the current position
+- Eligible Items include:
   - Substrings in the current string
   - Non-text Scopes in the current string
-  - Scopes before the start of the current string
-  - Skips individual unicode code points
-- Supports chaining, a back reference to a back reference propagates the first value
+  - Scopes before the start of the current string according to non-text [`back_reference`](./specs/back_reference.md) rules
+- Supports chaining, a back reference to a back reference propagates the original Item
 - A string defined as rich text can have back references to non-text data
 - A string defined as plain text must not have back references to non-text data
+- A distance that extends past the beginning of the root Scope throws [`error_invalid_back_reference`](./specs/error_invalid_back_reference.md) 
 
 ### Space
 - ID: 3
 - Unicode mapping: U+0020
 
-### a
+### Letter a
 - ID: 4
 - Unicode mapping: U+0061
 
-### e
+### Letter e
 - ID: 5
 - Unicode mapping: U+0065
 
-### o
+### Letter o
 - ID: 6
 - Unicode mapping: U+006F
 
-### t
+### Letter t
 - ID: 7
 - Unicode mapping: U+0074
 

@@ -2,7 +2,7 @@
 
 A serialization format and wire protocol for high performance self-describing data.
 
-- [Codec](codec.md) - Serialization rules designed around entropy. More frequently used symbols are represented with less bits.
+- [Codec](codec.md) - Serialization rules designed around entropy. More frequently used symbols use less bits.
 
 - [Registry](./registry/README.md) - Central list of symbols for describing data structures, types, execution, protocol interactions, etc.
 
