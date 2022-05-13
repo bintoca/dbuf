@@ -16,7 +16,7 @@ Software applications have evolved with relatively low interoperability. While s
 
 High performance at every level. DBUF aims to improve speed across all facets of the software lifecycle including fast parsers, fast interpreters, fast JIT compiling, potential for deep optimizations including influencing hardware design, fast IO (network and disk), fast adaptation to changing requirements.
 
-The above goals guide the design towards a self-describing binary format. In comparison, a self-describing text format like JSON-LD has too much overhead and a non-self-describing binary format like Protocol Buffers has too much out of band coordination.
+The above goals guide the design towards a self-describing binary format. In comparison, a self-describing text format like JSON-LD leads to substantially more serialization overhead and a non-self-describing binary format like Protocol Buffers necessitates out of band coordination which can be considered another form of overhead.
 
 The data types of serialization formats have traditionally been the lowest common denominator of types that exist across all programming languages. DBUF has a more powerful type system that can serve as the basis for a new family of programming languages and data stores while still being usable from existing languages.
 

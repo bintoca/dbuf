@@ -1,6 +1,6 @@
 # DBUF Codec
 
-DBUF is structured as a series of 32-bit blocks. The default encoding of a block contains packed variable length integers (varints) representing symbols from the registry. Certain symbols can describe the encoding of later blocks such as an (IEEE binary double) occupying 2 blocks or when a varint represents a number instead of a symbol. Maintaining 32-bit alignment is desireable because it provides opportunities for compiler optimizations or even hardware acceleration.
+DBUF is structured as a series of 32-bit blocks. The default encoding of a block contains packed variable length integers ("varints" in the rest of this spec) representing symbols from the registry. Certain symbols can describe the encoding of later blocks such as an (IEEE binary double) occupying 2 blocks or when a varint represents a number instead of a symbol. Maintaining 32-bit alignment is desireable because it provides opportunities for compiler optimizations or even hardware acceleration.
 
 ## Packed varints
 
