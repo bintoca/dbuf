@@ -6,3 +6,4 @@
   - Block size 1 or bit size <=32 - decimal32
   - Block size 2 or bit size <=64 - decimal64
   - Block size 3-4 or bit size <=128 - decimal128
+- All sizes use DPD (densely packed decimal) encoding
