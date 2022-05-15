@@ -1,6 +1,6 @@
 ## bind
 
-- Begins a 2 Item Scope
+- Begins a two Item Scope
 - The first Item is a data type that describes how to continue parsing and construct the second Item
 - The composition of the first Item translates into a composition of the following parse operations:
   - varint - consumes one varint
@@ -15,5 +15,6 @@
   - collection_stream - iterates repeatedly, consumes one varint after each iteration, stops on zero value, continues on non-zero value
   - choice - consumes one varint for choice selection, continues according to choice
   - varint_plus_block - consumes one varint and one block
+  - back_reference - consumes one varint as the distance
   - none - consumes nothing
-- When a nested bind appears in the compostion of the first Item, its parse operation is 'item'
+- When a nested bind appears in the composition of the first Item, its parse operation is 'item'

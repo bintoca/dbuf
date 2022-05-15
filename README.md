@@ -20,7 +20,7 @@ The above goals guide the design towards a self-describing binary format. In com
 
 The data types of serialization formats have traditionally been the lowest common denominator of types that exist across all programming languages. DBUF has a more powerful type system that can serve as the basis for a new family of programming languages and data stores while still being usable from existing languages.
 
-The flexibility of the format and type system presents serveral challenges when building an implementation but it also creates opportunities for new kinds of adaptive systems. For example, a data store could re-compile itself based on the data it has or is configured to accept.
+The flexibility of the format and type system presents several challenges when building an implementation but it also creates opportunities for new kinds of adaptive systems. For example, a data store could re-compile itself based on the data it has or is configured to accept.
 
 ## Reference Implementation
 
