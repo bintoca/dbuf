@@ -15,6 +15,5 @@
   - collection_stream - iterates repeatedly, consumes one varint after each iteration, stops on zero value, continues on non-zero value
   - choice - consumes one varint for choice selection, continues according to choice
   - varint_plus_block - consumes one varint and one block
-  - back_reference - consumes one varint as the distance
   - none - consumes nothing
 - When a nested bind appears in the composition of the first Item, its parse operation is 'item'

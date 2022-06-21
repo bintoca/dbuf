@@ -22,11 +22,9 @@ A series of varint symbols composes a root Scope of Items. An Item is a single s
 
 A few symbols consume the next varint as a parameter or have specific rules for how many Items they consume to form a Scope. Having these special rules in the spec for the most common symbols helps increase density. In the interest of forward compatible parsers, once the spec is solidified, no more special rules will be added. Symbols will continue to be added to the registry, but they must only compose within existing symbol semantics.
 
-The [`back_reference`](./registry/specs/back_reference.md) symbol (which consumes the next varint as the distance to look back) refers to a previous Item to create graph structures. The distance of a [`back_reference`](./registry/specs/back_reference.md) inside a Scope can extend into the parent Scope. The current Scope itself is not part of the distance lookup since it has not completed parsing.
-
-The [`forward_reference`](./registry/specs/forward_reference.md) symbol (which consumes the next varint as the distance to look forward) can create recursive structures. The forward distance is only within the current Scope, not any child Scopes.
-
 The [`type_wrap`](./registry/specs/type_wrap.md), [`type_struct`](./registry/specs/type_struct.md), [`type_choice`](./registry/specs/type_choice.md), [`type_collection`](./registry/specs/type_collection.md) symbols compose to form complex data types with packing descriptions. The [`bind`](./registry/specs/bind.md) symbol uses a complex data type to continue parsing without each value being preceded by its type. This achieves high density in many scenarios, such as a collection of objects with the same fields and types. See the [registry](./registry/README.md) for specific rules.
+
+The [`shared`](./registry/specs/shared.md) and [`shared_reference`](./registry/specs/shared_reference.md) symbols can create graph-like or recursive structures.
 
 The packing descriptions can utilize varints, whole blocks or exact bit widths inside blocks. When whole blocks are mixed with varint blocks, the whole blocks appear after a completed varint block, meaning the logical values may seem out of order in the bit stream, but the corresponding decoding rules can be implemented gracefully. This adds some complexity to the encoder to buffer writes appropriately, but it is justified to avoid wasted padding to the next 32-bit boundary.
 
