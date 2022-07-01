@@ -23,8 +23,6 @@ Subject to change until core semantics are settled
 - 18 - [TAI_seconds](./specs/TAI_seconds.md)
 - 19 - [error](./specs/error.md)
 
-* 64 - [shared](./specs/shared.md)
-* 65 - [shared_reference](./specs/shared_reference.md)
 * 66 - [type_collection_stream](./specs/type_collection_stream.md)
 * 67 - [type_stream_merge](./specs/type_stream_merge.md)
 * 68 - [parse_varint](./specs/parse_varint.md)
@@ -58,7 +56,6 @@ Subject to change until core semantics are settled
 + 515 - [error_internal](./specs/error_internal.md)
 + 516 - [error_invalid_back_reference](./specs/error_invalid_back_reference.md)
 + 517 - [error_bind_operation_cycle](./specs/error_bind_operation_cycle.md)
-+ 518 - [error_invalid_shared_reference](./specs/error_invalid_shared_reference.md)
 + 519 - [error_invalid_choice_index](./specs/error_invalid_choice_index.md)
 + 520 - [error_text_rich_in_plain](./specs/error_text_rich_in_plain.md)
 + 521 - [error_empty_scope](./specs/error_empty_scope.md)
