@@ -4,7 +4,6 @@ Subject to change until core semantics are settled
 
 - 0 - [placeholder](./specs/placeholder.md)
 - 1 - [end_scope](./specs/end_scope.md)
-- 2 - [back_reference](./specs/back_reference.md)
 - 3 - [type_wrap](./specs/type_wrap.md)
 - 4 - [type_choice](./specs/type_choice.md)
 - 5 - [type_struct](./specs/type_struct.md)
@@ -54,7 +53,6 @@ Subject to change until core semantics are settled
 + 513 - [block_varint_index](./specs/block_varint_index.md)
 + 514 - [block_bits_remaining](./specs/block_bits_remaining.md)
 + 515 - [error_internal](./specs/error_internal.md)
-+ 516 - [error_invalid_back_reference](./specs/error_invalid_back_reference.md)
 + 517 - [error_bind_operation_cycle](./specs/error_bind_operation_cycle.md)
 + 519 - [error_invalid_choice_index](./specs/error_invalid_choice_index.md)
 + 520 - [error_text_rich_in_plain](./specs/error_text_rich_in_plain.md)
