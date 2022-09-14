@@ -18,3 +18,4 @@
   - choice_bit_size - consumes a fixed number of bits from a non-varint block
   - varint_plus_block - consumes one varint and one block
   - none - consumes nothing
+- After the second Item is parsed, the parse operation of the bind Scope will be: item
