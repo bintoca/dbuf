@@ -9,11 +9,12 @@
   - block_variable - consumes one varint for number of blocks to consume, bias by 1, no zero lengths
   - bit_size - consumes a fixed number of bits from a non-varint block
   - bit_variable - consumes one varint for number of bits to consume, bias by 1, no zero lengths
-  - text_plain - implicitly begins a variable length Scope using the [text symbol list](../text.md) and plain text rules
-  - text_rich - implicitly begins a variable length Scope using the [text symbol list](../text.md) and rich text rules
-  - collection - consumes one varint for the number of iterations, bias by 1, no zero lengths
-  - collection_stream - iterates repeatedly, consumes one varint after each iteration, stops on zero value, continues on non-zero value
+  - text - implicitly begins a variable length Scope using the [text symbol list](../text.md)
+  - array - consumes one varint for array length, if zero begin array_stream
+  - array_stream - consumes one varint for array length and length number of items repeatedly until a zero length ends the array
+  - map - parse operations of each child Item are run in sequence
   - choice - consumes one varint for choice selection, continues according to choice
+  - choice_index - consumes one varint for choice selection, continues according to choice
+  - choice_bit_size - consumes a fixed number of bits from a non-varint block
   - varint_plus_block - consumes one varint and one block
   - none - consumes nothing
-- When a nested bind appears in the composition of the first Item, its parse operation is 'item'

@@ -1,4 +1,4 @@
-## months
+## days
 
 - [`bind`](bind.md) parse operation: varint
 - Gregorian calendar days

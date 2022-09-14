@@ -1,4 +1,4 @@
 ## fixed_point_decimal_places
 
 - [`bind`](bind.md) parse operation: varint
-- When composed as a middle Item in a [`type_wrap`](type_wrap.md), bound integer values will be interpreted as multiplied by 10^-n 
+- When composed in a nested [`bind`](bind.md), bound integer values will be interpreted as multiplied by 10^-n 

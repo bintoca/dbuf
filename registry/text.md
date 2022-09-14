@@ -35,45 +35,41 @@ A string is considered a Scope in the [codec](../codec.md)
 - ID: 7
 - Unicode mapping: U+0074
 
-### Repeat
-- ID: 8
-- Used for run length encoding
-- Consumes next varint as number of repetitions + 1 of previous value
-
-### Non-text
-- ID: 9
-- Used for embedding structured data in a rich text string
-- Invalid in a plain text string
-- Begins a Scope that uses the default registry symbols, an end scope symbol returns parsing to the text scope
-- Text and non-text can be nested recursively
-
 ### Line feed
-- ID: 10
+- ID: 8
 - Unicode mapping: U+000A
 
 ### Exclamation
-- ID: 11
+- ID: 9
 - Unicode mapping: U+0021
 
 ### Double Quote
-- ID: 12
+- ID: 10
 - Unicode mapping: U+0022
 
 ### Single Quote
-- ID: 13
+- ID: 11
 - Unicode mapping: U+0027
 
 ### Comma
-- ID: 14
+- ID: 12
 - Unicode mapping: U+002C
 
 ### Hyphen
-- ID: 15
+- ID: 13
 - Unicode mapping: U+002D
 
 ### Period
-- ID: 16
+- ID: 14
 - Unicode mapping: U+002E
+
+### Forward Slash
+- ID: 15
+- Unicode mapping: U+002F
+
+### Colon
+- ID: 16
+- Unicode mapping: U+003A
 
 ### Question
 - ID: 17
@@ -84,9 +80,9 @@ A string is considered a Scope in the [codec](../codec.md)
 - Unicode mapping: U+0041-U+005A, U+0061-U+007A
 
 ### Remaining ASCII not defined above
-- ID: 64-130
+- ID: 64-128
 - Unicode mapping: U+0000-U+007F
 
 ### Remaining unicode not defined above
-- ID: 131-1114116
+- ID: 129-1114112
 - Unicode mapping: U+0080-U+10FFFF
