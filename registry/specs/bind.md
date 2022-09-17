@@ -15,6 +15,7 @@
   - map - parse operations of each child Item are run in sequence
   - choice - consumes one varint for choice selection, continues according to choice
   - choice_index - consumes one varint for choice selection, continues according to choice
+  - choice_append - parses one Item by default rules and appends it to the closest enclosing type_choice
   - choice_bit_size - consumes a fixed number of bits from a non-varint block
   - varint_plus_block - consumes one varint and one block
   - none - consumes nothing
