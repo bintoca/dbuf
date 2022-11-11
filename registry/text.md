@@ -4,32 +4,33 @@ Subject to change until core semantics are settled
 
 A string is considered a Scope in the [codec](../codec.md)
 
-### End of string or substring
-- ID: 0
-
 ### Space
-- ID: 1
+- ID: 0
 - Unicode mapping: U+0020
 
 ### Letter a
-- ID: 2
+- ID: 1
 - Unicode mapping: U+0061
 
 ### Letter e
-- ID: 3
+- ID: 2
 - Unicode mapping: U+0065
 
 ### Letter i
-- ID: 4
+- ID: 3
 - Unicode mapping: U+0069
 
 ### Letter n
-- ID: 5
+- ID: 4
 - Unicode mapping: U+006E
 
 ### Letter o
-- ID: 6
+- ID: 5
 - Unicode mapping: U+006F
+
+### Letter s
+- ID: 6
+- Unicode mapping: U+0073
 
 ### Letter t
 - ID: 7
@@ -71,18 +72,22 @@ A string is considered a Scope in the [codec](../codec.md)
 - ID: 16
 - Unicode mapping: U+003A
 
-### Question
+### Semi Colon
 - ID: 17
+- Unicode mapping: U+003B
+
+### Question
+- ID: 18
 - Unicode mapping: U+003F
 
 ### Remaining A-Z, a-z not defined above
-- ID: 18-63
+- ID: 19-63
 - Unicode mapping: U+0041-U+005A, U+0061-U+007A
 
 ### Remaining ASCII not defined above
-- ID: 64-128
+- ID: 64-127
 - Unicode mapping: U+0000-U+007F
 
 ### Remaining unicode not defined above
-- ID: 129-1114112
+- ID: 128-1114111
 - Unicode mapping: U+0080-U+10FFFF
