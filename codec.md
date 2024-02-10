@@ -26,9 +26,9 @@ After the optional symbols mentioned above, the structure of a DBUF stream follo
 
 ## Symbols that affect parsing
 
+- [type_choice](./registry/specs/type_choice.md)
 - [type_map](./registry/specs/type_map.md) 
 - [type_array](./registry/specs/type_array.md)
-- [type_choice](./registry/specs/type_choice.md)
 - [parse_varint](./registry/specs/parse_varint.md)
 - [parse_bit_size](./registry/specs/parse_bit_size.md)
 - [utf8](./registry/specs/utf8.md)
@@ -43,3 +43,9 @@ After the optional symbols mentioned above, the structure of a DBUF stream follo
 - [parse_stream](./registry/specs/parse_stream.md)
 
 All other symbols only represent their literal value and do not create any additional parsing.
+
+## Type Conventions
+
+The order of [type_map](./registry/specs/type_map.md)  keys in meaningful and must be maintained across transformations. 
+
+For use cases where a nominal type is desired, the first [type_map](./registry/specs/type_map.md) key should identify the type.
