@@ -1,4 +1,0 @@
-## type_array
-
-
-undefined

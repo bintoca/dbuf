@@ -22,7 +22,7 @@ The first byte (or fifth byte if the 4 byte magic number was present) may contai
 
 ## Initial Structure
 
-After the optional symbols mentioned above, the structure of a DBUF stream follows the semantics of the [bind](./registry/specs/bind.md) symbol's type and data components. The literal [bind](./registry/specs/bind.md) symbol is implicit and omitted from the beginning of the stream. The first value will be a varint encoded symbol starting the type component of the [bind](./registry/specs/bind.md). The end of the [bind](./registry/specs/bind.md) data component is considered the end of the DBUF stream. Any data in the bit stream after this point MUST be ignored. A DBUF stream contains exactly one [bind](./registry/specs/bind.md) structure, never a sequence of structures. If a sequence is desired, the data should be defined as a [type_array](./registry/specs/type_array.md) inside the single [bind](./registry/specs/bind.md).
+After the optional symbols mentioned above, the structure of a DBUF stream follows the semantics of the [parse_type](./registry/specs/parse_type.md) symbol's type and data components. The literal [parse_type](./registry/specs/parse_type.md) symbol is implicit and omitted from the beginning of the stream. The first value will be a varint encoded symbol starting the type component of the [parse_type](./registry/specs/parse_type.md). The end of the [parse_type](./registry/specs/parse_type.md) data component is considered the end of the DBUF stream. Any data in the bit stream after this point MUST be ignored. A DBUF stream contains exactly one [parse_type](./registry/specs/parse_type.md) structure, never a sequence of structures. If a sequence is desired, the data should be defined as as such inside the single [parse_type](./registry/specs/parse_type.md).
 
 ## Symbols that affect parsing
 
@@ -32,7 +32,7 @@ After the optional symbols mentioned above, the structure of a DBUF stream follo
 - [parse_varint](./registry/specs/parse_varint.md)
 - [parse_bit_size](./registry/specs/parse_bit_size.md)
 - [utf8](./registry/specs/utf8.md)
-- [bind](./registry/specs/bind.md)
+- [parse_type](./registry/specs/parse_type.md)
 - [type_choice_shared](./registry/specs/type_choice_shared.md)
 - [type_choice_select](./registry/specs/type_choice_select.md)
 - [type_map_columns](./registry/specs/type_map_columns.md)
@@ -44,8 +44,14 @@ After the optional symbols mentioned above, the structure of a DBUF stream follo
 
 All other symbols only represent their literal value and do not create any additional parsing.
 
+### Parse Modes
+
+The specifications of several symbols refer to parse modes:
+
+- any - Consumes one varint representing a registry symbol and sets it's associated parse mode
+
 ## Type Conventions
 
-The order of [type_map](./registry/specs/type_map.md)  keys in meaningful and must be maintained across transformations. 
+The order of [type_map](./registry/specs/type_map.md) keys in meaningful and must be maintained across transformations. 
 
 For use cases where a nominal type is desired, the first [type_map](./registry/specs/type_map.md) key should identify the type.

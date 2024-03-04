@@ -1,4 +1,0 @@
-## type_map
-
-
-undefined
