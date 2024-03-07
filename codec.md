@@ -49,6 +49,9 @@ All other symbols only represent their literal value and do not create any addit
 The specifications of several symbols refer to parse modes:
 
 - any - Consumes one varint representing a registry symbol and sets it's associated parse mode
+- choice - Consumes the least number of bits that can represent the number of options in the corresponding [type_choice](./registry/specs/type_choice.md). 
+The value consumed is a zero based index into the options and sets the parse mode of the selected option. If the index is outside the bounds of the last option, 
+the last option is selected.
 
 ## Type Conventions
 
