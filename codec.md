@@ -1,6 +1,7 @@
 # DBUF Codec
 
-DBUF is structured as a stream of binary integers. The first few values in a stream correspond to symbols in the [Registry](./registry/README.md) that describe the size and meaning of values later in the stream.
+DBUF is structured as a stream of binary integers. The first few values in a stream correspond to symbols in the [Registry](./registry/README.md) that describe the size and meaning of values later in the stream. 
+The symbols also compose in ways that can describe nested or repeating patterns with dense packing.
 
 ## Varints
 
@@ -14,15 +15,28 @@ Several areas of the DBUF spec refer to a default variable length integer encodi
 
 The leading bits may be the most or least significant bits as defined by [little_endian_marker](./registry/specs/little_endian_marker.md) at the beginning of the stream. Likewise, the data bits will follow the same convention of most or least significant first.
 
-## Beginning of a stream
+## Optional Prefixes
 
-The first 4 bytes may contain the magic number 0xDFDFDFDF. This value is unique among publicly known magic numbers and will not collide with any valid unicode encoding. It is also the same as two consecutive instances of the most significant bit encoding of [magic_number](./registry/specs/magic_number.md) so it will not collide with any valid DBUF data. Any other occurences of [magic_number](./registry/specs/magic_number.md) are treated as a normal symbol without special semantics.
+The first 4 bytes of a stream may contain the magic number 0xDFDFDFDF. This value is unique among publicly known magic numbers and will not collide with any valid unicode encoding. It is also the same as two consecutive instances of the most significant bit encoding of [magic_number](./registry/specs/magic_number.md) so it will not collide with any valid DBUF data. Any other occurences of [magic_number](./registry/specs/magic_number.md) are treated as a normal symbol without special semantics.
 
 The first byte (or fifth byte if the 4 byte magic number was present) may contain the value 0x91. The presence of this value indicates a bit order of least significant bit first. The absence of this value indicates a bit order of most significant bit first. 0x91 is the most significant bit encoding of [little_endian_marker](./registry/specs/little_endian_marker.md) so it will not collide with any valid DBUF data. Any other occurences of [little_endian_marker](./registry/specs/little_endian_marker.md) are treated as a normal symbol without special semantics.
 
-## Initial Structure
+## Root Structure
 
-After the optional symbols mentioned above, the structure of a DBUF stream follows the semantics of the [parse_type](./registry/specs/parse_type.md) symbol's type and data components. The literal [parse_type](./registry/specs/parse_type.md) symbol is implicit and omitted from the beginning of the stream. The first value will be a varint encoded symbol starting the type component of the [parse_type](./registry/specs/parse_type.md). The end of the [parse_type](./registry/specs/parse_type.md) data component is considered the end of the DBUF stream. Any data in the bit stream after this point MUST be ignored. A DBUF stream contains exactly one [parse_type](./registry/specs/parse_type.md) structure, never a sequence of structures. If a sequence is desired, the data should be defined as as such inside the single [parse_type](./registry/specs/parse_type.md).
+After the optional prefixes mentioned above, a DBUF stream consists of two parts, a type component and a data component. The type component describes the structure of the data component.
+
+This specification expresses the semantics of the type and data components as a set of parse modes. Each mode has rules for how it consumes bits from the stream, the semantic meaning of those bits and 
+what parse mode should follow next.
+
+The type component begins in parse mode any.
+
+The end of the data component is considered the end of the DBUF stream. Any data in the bit stream after this point MUST be ignored. A DBUF stream contains exactly one type component and one data component, never a sequence of type/data components. If a sequence is desired, the type component should use an appropriate structure such as [type_array](./registry/specs/type_array.md).
+
+follows the semantics of the [parse_type](./registry/specs/parse_type.md) symbol's type and data components. The literal [parse_type](./registry/specs/parse_type.md) symbol is implicit and omitted from the beginning of the stream.
+
+## Defined Structure
+
+The [Registry](./registry/README.md) symbols compose to form flexible parsing instructions
 
 ## Symbols that affect parsing
 
@@ -55,6 +69,15 @@ the last option is selected.
 
 ## Type Conventions
 
-The order of [type_map](./registry/specs/type_map.md) keys in meaningful and must be maintained across transformations. 
+The order of [type_map](./registry/specs/type_map.md) keys is meaningful and must be maintained across transformations. 
 
 For use cases where a nominal type is desired, the first [type_map](./registry/specs/type_map.md) key should identify the type.
+
+## Protocol Extensions
+
+Protocols may use the semantics of DBUF type components to define streams with only a data component, thereby eliminating the overhead of the type component.
+
+Including the type component is still highly encouraged to maximize interoperability. 
+
+Using DBUF to exchange type component information is also recommended for protocols. 
+If new descriptive symbols are needed for such purposes, they should be coordinated using the [Registry](./registry/README.md)

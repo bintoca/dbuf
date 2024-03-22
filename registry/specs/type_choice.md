@@ -2,7 +2,7 @@
 
 ID: 4
 
-Defines a list of options that can be nested in other structures.
+Defines a list of options that can be selected by an index.
 
 Consumes one varint specifying the number of options to parse with [parse mode any](../../codec.md)
 
@@ -13,3 +13,4 @@ The number of options is offset by two, meaning a literal value of zero equals t
 | Description | Binary | S-expression |
 |----|----|----|
 | Array of integers with different sizes | `0x3406268f25a71000` | (([type_array](./type_array.md) ([type_choice](./type_choice.md) ([parse_bit_size](./parse_bit_size.md) 3) ([parse_bit_size](./parse_bit_size.md) 16))) ([array](../node_types/array.md) ([choice](../node_types/choice.md) 0 5) ([choice](../node_types/choice.md) 1 20000))) |
+| Index greater than the number of options | `0x341a05671e58` | (([type_array](./type_array.md) ([type_choice](./type_choice.md) [id](./id.md) [parse_varint](./parse_varint.md) ([parse_bit_size](./parse_bit_size.md) 8))) ([array](../node_types/array.md) ([choice](../node_types/choice.md) 3 150))) |
