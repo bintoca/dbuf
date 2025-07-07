@@ -2,7 +2,7 @@
 
 ID: 0
 
-Defines a list of key/value pairs.
+Defines a collection of key/value pairs.
 
 Consumes one varint specifying the number of pairs to parse. All the keys come first followed by all the values.
 

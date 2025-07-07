@@ -4,7 +4,7 @@ ID: 18
 
 Used as a placeholder for an empty value.
 
-When used in a [type_map](./type_map.md) preserves the key's presence, in contrast to [nonexistent](./nonexistent.md) which implies the key is absent.
+When used in a [type_map](./type_map.md), it preserves the key's presence, in contrast to [nonexistent](./nonexistent.md) which implies the key is absent.
 
 ### Examples
 
