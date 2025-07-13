@@ -10,6 +10,4 @@ When encountered in the parsing of a data component: Consumes the least number o
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| Align to 32 bits before parsing varint | `0x8d44000050` | (([parse_align](./parse_align.md) 32 [parse_varint](./parse_varint.md)) (align 5)) | <pre>5</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>Align to 32 bits before parsing varint</td><td>0x8d44000050</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./parse_align.md">parse_align</a> 32 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./parse_varint.md">parse_varint</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(align <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>5</pre></td></table>

@@ -8,6 +8,6 @@ Used as a key in a map to identify error information.
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| Internal error | `0x01a0c040` | (([type_map](./type_map.md) [error](./error.md) [error_internal](./error_internal.md)) (map)) | <pre>{"error":"error_internal"}</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>Internal error</td><td>0x01a0c040</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./error.md">error</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./error_internal.md">error_internal</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(map<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>{
+  "error": "error_internal"
+}</pre></td></table>

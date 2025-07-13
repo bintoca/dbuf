@@ -12,6 +12,7 @@ Implementations must take care not to allocate resources proportional to the len
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| Array of unsigned integers | `0x142340` | (([type_array](./type_array.md) [parse_varint](./parse_varint.md)) (array 3 4)) | <pre>[3,4]</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>Array of unsigned integers</td><td>0x142340</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./type_array.md">type_array</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./parse_varint.md">parse_varint</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(array <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>[
+  3,
+  4
+]</pre></td></table>

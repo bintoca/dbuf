@@ -8,6 +8,8 @@ When encountered in the parsing of a data component: Consumes one varint specify
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| 3 bytes | `0x8f30010203` | ([parse_bytes](./parse_bytes.md) (bytes)) | <pre>{"0":1,"1":2,"2":3}</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>3 bytes</td><td>0x8f30010203</td><td>(<br>&nbsp;&nbsp;&nbsp;<a href="./parse_bytes.md">parse_bytes</a> <br>&nbsp;&nbsp;&nbsp;0x010203<br>)</td><td><pre>{
+  "0": 1,
+  "1": 2,
+  "2": 3
+}</pre></td></table>

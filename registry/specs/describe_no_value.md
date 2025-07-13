@@ -8,7 +8,11 @@ When used in a [type_map](./type_map.md), it preserves the key's presence, in co
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| Empty value | `0x01c04692` | (([type_map](./type_map.md) [denominator](./denominator.md) [describe_no_value](./describe_no_value.md)) (map)) | <pre>{"denominator":"describe_no_value"}</pre> |
-| Empty value with error as the reason it is empty | `0x01c0460192a0` | (([type_map](./type_map.md) [denominator](./denominator.md) ([type_map](./type_map.md) [describe_no_value](./describe_no_value.md) [error](./error.md))) (map (map))) | <pre>{"denominator":{"describe_no_value":"error"}}</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>Empty value</td><td>0x01c04692</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./denominator.md">denominator</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./describe_no_value.md">describe_no_value</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(map<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>{
+  "denominator": "describe_no_value"
+}</pre></td>
+<tr><td>Empty value with error as the reason it is empty</td><td>0x01c0460192a0</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./denominator.md">denominator</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./describe_no_value.md">describe_no_value</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./error.md">error</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(map <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>{
+  "denominator": {
+    "describe_no_value": "error"
+  }
+}</pre></td></table>

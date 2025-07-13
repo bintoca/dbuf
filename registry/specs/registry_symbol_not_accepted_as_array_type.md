@@ -10,6 +10,7 @@ A related stream position includes the bits of the offending symbol.
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| Error stating a symbol is not accepted at bit position 12 | `0x02a0c044c04348c0` | (([type_map](./type_map.md) [error](./error.md) [stream_position](./stream_position.md) [registry_symbol_not_accepted_as_array_type](./registry_symbol_not_accepted_as_array_type.md) [parse_varint](./parse_varint.md)) (map 12)) | <pre>{"error":"registry_symbol_not_accepted_as_array_type","stream_position":12}</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>Error stating a symbol is not accepted at bit position 12</td><td>0x02a0c044c04348c0</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./error.md">error</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./stream_position.md">stream_position</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./registry_symbol_not_accepted_as_array_type.md">registry_symbol_not_accepted_as_array_type</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./parse_varint.md">parse_varint</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(map <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>{
+  "error": "registry_symbol_not_accepted_as_array_type",
+  "stream_position": 12
+}</pre></td></table>

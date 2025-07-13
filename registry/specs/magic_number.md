@@ -6,7 +6,9 @@ Placeholder symbol to avoid collisions with the magic number optional prefix at 
 
 ### Examples
 
-| Description | Binary | S-expression | Unpacked |
-|----|----|----|----|
-| Stream with prefix | `0xdfdfdfdf019542` | ([magic_number](./magic_number.md) [magic_number](./magic_number.md) ([type_map](./type_map.md) [value](./value.md) [parse_varint](./parse_varint.md)) (map 2)) | <pre>{"value":2}</pre> |
-| Normal symbol usage | `0x0195dfdf` | (([type_map](./type_map.md) [value](./value.md) [magic_number](./magic_number.md)) (map)) | <pre>{"value":"magic_number"}</pre> |
+<table><tr><th>Description</th><th>Binary</th><th>S-expression</th><th>Unpacked</th></tr><tr><td>Stream with prefix</td><td>0xdfdfdfdf019542</td><td>(magic_number_prefix <br>&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./value.md">value</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./parse_varint.md">parse_varint</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(map <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>{
+  "value": 2
+}</pre></td>
+<tr><td>Normal symbol usage</td><td>0x0195dfdf</td><td>(<br>&nbsp;&nbsp;&nbsp;(<a href="./type_map.md">type_map</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./value.md">value</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./magic_number.md">magic_number</a><br>&nbsp;&nbsp;&nbsp;) <br>&nbsp;&nbsp;&nbsp;(map<br>&nbsp;&nbsp;&nbsp;)<br>)</td><td><pre>{
+  "value": "magic_number"
+}</pre></td></table>
