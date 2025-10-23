@@ -17,9 +17,9 @@ The leading bits may be the most or least significant bits as defined by the opt
 
 ## Optional Prefixes
 
-The first 4 bytes of a stream may contain the magic number 0xDFDFDFDF. This value is unique among publicly known magic numbers and will not collide with any valid unicode encoding. It is also the same as two consecutive instances of the most significant bit encoding of [magic_number](./registry/magic_number.md) so it will not collide with any valid DBUF data. Any other occurences of [magic_number](./registry/magic_number.md) are treated as a normal symbol without special semantics.
+The first 4 bytes of a stream may contain the magic number 0xDFDFDFDF. This value is unique among publicly known magic numbers and will not collide with any valid unicode encoding. It is also the same as two consecutive instances of the most significant bit encoding of [magic_number](./registry/magic_number.md) so it will not collide with any valid DBUF data. Any other occurrences of [magic_number](./registry/magic_number.md) are treated as a normal symbol without special semantics.
 
-The first byte (or fifth byte if the 4 byte magic number was present) may contain the value 0x90. The presence of this value indicates a bit order of least significant bit first. The absence of this value indicates a bit order of most significant bit first. 0x90 is the most significant bit encoding of [little_endian_marker](./registry/little_endian_marker.md) so it will not collide with any valid DBUF data. Any other occurences of [little_endian_marker](./registry/little_endian_marker.md) are treated as a normal symbol without special semantics.
+The first byte (or fifth byte if the 4 byte magic number was present) may contain the value 0x90. The presence of this value indicates a bit order of least significant bit first. The absence of this value indicates a bit order of most significant bit first. 0x90 is the most significant bit encoding of [little_endian_marker](./registry/little_endian_marker.md) so it will not collide with any valid DBUF data. Any other occurrences of [little_endian_marker](./registry/little_endian_marker.md) are treated as a normal symbol without special semantics.
 
 ## Root Structure
 
