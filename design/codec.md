@@ -28,11 +28,11 @@ DBUF also envisions a future where hardware instructions are not solely 8-bit or
 
 Variable length integers are a common feature of binary formats, providing compact encodings for smaller integers that tend to occur more often than larger integers. Most formats use 8-bit aligned varints, e.g. base128 with seven data bits and one flag bit.
 
-DBUF has a more aggressive varint format that is 4-bit aligned. This is justified by the high rate of occurrence of numbers 0-7 that can then occupy just 4-bits and provide a significant overall gain in density.
+DBUF has a more aggressive [varint](../specs/codec.md) format that is 4-bit aligned. This is justified by the high rate of occurrence of numbers 0-7 that can then occupy just 4-bits and provide a significant overall gain in density.
 
 4-bit alignment has a slight impact on encoding/decoding speed but can still be optimized enough for most use cases. For maximum optimization, varints only need to be used in descriptive elements, with bulk data having a different preferred alignment. 
 
-The maximum payload of a varint is 32-bits. This predictability allows for optimizations such as eliding length checking in parsers. Larger sizes are supported by composable description with parse_bit_size.
+The maximum payload of a varint is 32-bits. This predictability allows for optimizations such as eliding length checking in parsers. Larger sizes are supported by composable description with [parse_bit_size](../specs/registry/parse_bit_size.md).
 
 Another long term goal is that the above characteristics make it attractive to create new hardware instructions for varint decoding. Presumably those instructions would be faster than the software implementations of any possible varint format.
 
@@ -50,33 +50,35 @@ Descriptions of arrays are composable with other symbols to form nestable struct
 
 There are four array definition symbols each geared to different use cases:
 
-- type_array - Implies a varint encoded array length. Intended for the most compact type definitions.
-- type_array_bit - Takes a bit size for the array length. Intended for more precise control of alignment and array lengths above the range of 32-bit integers.
-- type_array_fixed - Takes a fixed size for the array length. Intended for arrays with repetitive lengths such are matrixes.
-- type_array_chunk - Intended for arrays of unknown length such as streaming data. 
+- [type_array](../specs/registry/type_array.md) - Implies a varint encoded array length. Intended for the most compact type definitions.
+- [type_array_bit](../specs/registry/type_array_bit.md) - Takes a bit size for the array length. Intended for more precise control of alignment and array lengths above the range of 32-bit integers.
+- [type_array_fixed](../specs/registry/type_array_fixed.md) - Takes a fixed size for the array length. Intended for arrays with repetitive lengths such are matrixes.
+- [type_array_chunk](../specs/registry/type_array_chunk.md) - Intended for arrays of unknown length such as streaming data. 
 
 ## Type Choice
 
-The data types and values in a given dataset are often constrained or have some form of commonality. Programming languages typically address this with enums or union types. DBUF integrates this concept with high composability through the type_choice symbol.
+The data types and values in a given dataset are often constrained or have some form of commonality. Programming languages typically address this with enums or union types. DBUF integrates this concept with high composability through the [type_choice](../specs/registry/type_choice.md) symbol.
 
-type_choice encodes a selection from a set of choices with the minimum number of bits that can represent the total count of choices. For example, a field that has five possible values is encoded as three bits. 
+[type_choice](../specs/registry/type_choice.md) encodes a selection from a set of choices with the minimum number of bits that can represent the total count of choices. For example, a field that has five possible values is encoded as three bits. 
 
 The choice selection can also extend to data types. A field that has integer values from 0-1000 with a high frequency of values less than 16 could encode a choice (occupying 1-bit) between 4-bit and 10-bit values.
 
 Choices can also be nested which can then form the equivalent of Huffman codes. These capabilities enable use cases where the composed semantic compression can outperform external compression schemes. 
 
+[type_choice_shared](../specs/registry/type_choice_shared.md) and [type_choice_select](../specs/registry/type_choice_select.md) provide an additional layer of functionality describing recursive data types and dictionary like compression.
+
 ## Type Optional
 
-Fields that may or may not have a value are so common that it justifies a shorthand symbol. type_optional is semantically equivalent to a type_choice of nonexistent and a given data type.
+Fields that may or may not have a value are so common that it justifies a shorthand symbol. [type_optional](../specs/registry/type_optional.md) is semantically equivalent to a [type_choice](../specs/registry/type_choice.md) of [nonexistent](../specs/registry/nonexistent.md) and a given data type.
 
 ## Text Strings
 
-With the parse_text symbol, text is encoded as an array of UTF8 bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
+With the [parse_text](../specs/registry/parse_text.md) symbol, text is encoded as an array of UTF8 bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
 
-Custom text encodings other than UTF8 can be described with the text symbol attached to more specialized arrays.
+Custom text encodings other than UTF8 can be described with the [text](../specs/registry/text.md) symbol attached to more specialized arrays.
 
 ## Byte Strings
 
-With the parse_bytes symbol, data is encoded as an array of bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
+With the [parse_bytes](../specs/registry/parse_bytes.md) symbol, data is encoded as an array of bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
 
-Compressed byte streams can be described with the bytes symbol attached to more specialized arrays.
+Compressed byte streams can be described with the [bytes](../specs/registry/bytes.md) symbol attached to more specialized arrays.
