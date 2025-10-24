@@ -82,3 +82,39 @@ Custom text encodings other than UTF8 can be described with the [text](../specs/
 With the [parse_bytes](../specs/registry/parse_bytes.md) symbol, data is encoded as an array of bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
 
 Compressed byte streams can be described with the [bytes](../specs/registry/bytes.md) symbol attached to more specialized arrays.
+
+## Endianness
+
+Since DBUF allows values of any bit width, it is necessary to define the order that bits are consumed from a stream. There is an unfortunate dilemma that most internet protocols use network byte order (big endian) while a large share of current hardware is little endian. For the sake of broad adoption DBUF makes this choice self-describing with the presence or absence of the prefix symbol [little_endian_marker](../specs/registry/little_endian_marker.md). 
+
+DBUF semantics are defined in terms of a series of numeric values, making them identical in either endianness.
+
+## Empty Values
+
+The concept of nothing takes many forms across data formats, programming languages and databases. Some examples are null, undefined, DBNull, nil, None. DBUF symbols describe empty values in a way more suited to structural typing. 
+
+The [nonexistent](../specs/registry/nonexistent.md) symbol is a placeholder for combining heterogeneous sets of data. When used in a map, it implies a key does not exist on that object rather than holding the value nonexistent. 
+
+The [describe_no_value](../specs/registry/describe_no_value.md) symbol is a placeholder that should not be elided in heterogeneous data. When used in a map, the key does exist. It can also be extended to embed another value as a reason why there is no value. 
+
+## Structural Typing
+
+In the interest of having parsing routines that can be separated into logical layers, DBUF has just 16 symbols that form the core parsing rules. More complex data types can be composed as maps that are interpreted as a single logical value rather than a set of key/value pairs. 
+
+Typical patterns are: 
+- map with one key that serves to qualify a value
+- map with two or three keys that add metadata to a value
+
+## Signed Integers
+
+The [integer_signed](../specs/registry/integer_signed.md) symbol qualifies a value as signed integer. The bits are interpreted as two's complement. This allows data to be exchanged in formats that match hardware layouts without additional decoding.
+
+## Binary Floating Point
+
+IEEE 754 binary has strong hardware support so DBUF uses it's 16, 32, and 64 bit definitions as the main representation of floating point numbers. Composition with customized bit widths enables reduced precision use cases (e.g. a 24-bit value with the exponent bit pattern of binary32).
+
+Values larger that 64-bits can be composed with the [exponent_base2](../specs/registry/exponent_base2.md) symbol.
+
+## Decimal Floating Point
+
+IEEE 754 has a decimal format, but it has little hardware support. The values of decimal fields are more likely to share the same exponent (e.g. two decimal place precision for money). Therefore, better semantic compression can be achieved with composition of the [exponent_base10](../specs/registry/exponent_base10.md) symbol. Values with the same exponent can then be encoded as integers and benefit from the speed of integer math instructions.
