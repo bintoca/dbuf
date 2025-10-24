@@ -118,3 +118,11 @@ Values larger that 64-bits can be composed with the [exponent_base2](../specs/re
 ## Decimal Floating Point
 
 IEEE 754 has a decimal format, but it has little hardware support. The values of decimal fields are more likely to share the same exponent (e.g. two decimal place precision for money). Therefore, better semantic compression can be achieved with composition of the [exponent_base10](../specs/registry/exponent_base10.md) symbol. Values with the same exponent can then be encoded as integers and benefit from the speed of integer math instructions.
+
+## Dates and Time
+
+[epoch_seconds_continuous](../specs/registry/epoch_seconds_continuous.md) is the symbol for representing timestamps. Composing it with DBUF integers and decimals allows it to have any range and precision. The epoch is defined as an offset of TAI (a continuous time scale without leap seconds). This avoids the leap second ambiguities of POSIX time and requires implementations to be leap second aware when converting to UTC. 
+
+The epoch instant was chosen as the equivalent of January 1st 2018 UTC. This places all existing leap seconds before the epoch so datasets with exclusively positive values could elide leap second conversions. A future leap second would disrupt that optimization but standards bodies have preliminary agreements to eliminate leap seconds by 2035. The current trend of UT1-UTC difference indicates another leap second is unlikely before 2035.
+
+Timestamps in the future can't necessarily be represented with integers. Changes in legal definitions like daylight savings time can affect the meaning of future timestamps in relation to the past. A structure with the components of civil time is needed to retain the intended meaning. DBUF includes symbols for year, month, day, etc. for this purpose. 
