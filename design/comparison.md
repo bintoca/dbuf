@@ -82,7 +82,43 @@ DBUF provides coordinated extensibility through is symbol registry.
 
 ## CBOR 
 
+#### Types
+
+CBOR offers basic data types in a self describing format. CDDL provides more structured type definitions on top of CBOR.
+
+DBUF has a composable type system that can create more precise and standardized descriptions of data, without a separate language. Flexible binary encodings achieve higher performance.
+
+#### Layout
+
+CBOR follows a (type, length, value) layout for every item. Some commonly used values can be packed into a single byte. In an array of similar maps, each map repeats its keys. External compression is needed to reduce the impact of this verbosity. CBOR tags must encapsulate another item so the minimum size of a tagged value is two bytes. 
+
+DBUF describes structures in a way that reduces redundancies (semantic compression). DBUF prioritizes the encoding of symbols to be more compact than CBOR tags.
+
+#### Extensibility
+
+CBOR tags have limited composability leading to definition of many tags with overlapping meaning. 
+
+DBUF symbols compose more succinctly to minimize definitions and fragmentation.
+
 ## ASN.1
+
+#### Types
+
+ASN.1 has its own language for type definitions separate from data encodings, making the encodings only partially self describing. 
+
+DBUF symbols compose in a way that offers the same power as a separate language and can also concisely self describe data.
+
+#### Layout
+
+ASN.1 follows a (type, length, value) layout for every item. Lengths include the size of nested items.
+
+DBUF describes structures in a way that reduces redundancies (semantic compression).
+
+#### Extensibility
+
+ASN.1 type tags have significant baggage and fragmentation from legacy design decisions. 
+
+DBUF symbols compose more succinctly to minimize definitions and fragmentation.
 
 ## Protocol Buffers
 
