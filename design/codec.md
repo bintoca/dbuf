@@ -4,9 +4,11 @@
 
 The cornerstone of collaboration is exchanging data. Various approaches to encoding data have evolved over the years. Most strive for simplicity at the cost of completeness. Differing priorities lead to fragmentation and incompatible semantics. Semantics must also be translated out of band from possibly imprecise specifications leading to further incompatibilities. These difficulties accumulate and hinder cooperation. 
 
-DBUF takes a more integrated approach with composable symbols for describing data structures. A carefully crafted set of baseline symbols form a comprehensive type system. The semantics are layered in a way that simpler implementations can be achieved by only using a subset of the baseline symbols.
+DBUF takes a more integrated approach with composable symbols for describing data structures. A carefully crafted set of baseline symbols form a comprehensive type system. The semantics are layered in a way that simpler implementations can be achieved by only using a subset of the baseline symbols. There are no syntax errors at the encoding layer of DBUF. All bit patterns have well defined meanings. 
 
-The descriptive elements are encoded at the beginning of a data stream. This enables dynamically adaptive systems and semantic compression techniques. For aggressive optimization, protocols can define descriptive elements out of band. This provides the lowest overhead while still benefiting from common semantics. 
+The descriptive elements are encoded at the beginning of a data stream. This enables dynamically adaptive systems and semantic compression techniques. For aggressive optimization, protocols can define descriptive elements out of band. This provides the lowest overhead while still benefiting from common semantics.
+
+Binary formats are generally not considered human readable, leading many use cases to opt for a textual format. DBUF's layer semantics are intended to help bridge that gap. Input and editing interfaces can still be textual as long as they provide a reliable two-way transformation with binary DBUF. That way many textual formats, each tailored to different use cases, can share semantics.
 
 ## Symbol Registry
 
@@ -96,6 +98,12 @@ The concept of nothing takes many forms across data formats, programming languag
 The [nonexistent](../specs/registry/nonexistent.md) symbol is a placeholder for combining heterogeneous sets of data. When used in a map, it implies a key does not exist on that object rather than holding the value nonexistent. 
 
 The [describe_no_value](../specs/registry/describe_no_value.md) symbol is a placeholder that should not be elided in heterogeneous data. When used in a map, the key does exist. It can also be extended to embed another value as a reason why there is no value. 
+
+## Alignment
+
+The [parse_align](../specs/registry/parse_align.md) symbol wraps another data type to create a desired alignment at any position it appears.
+
+The [nonexistent](../specs/registry/nonexistent.md) symbol can be used as a placeholder map key to create padding within a structure.
 
 ## Structural Typing
 
