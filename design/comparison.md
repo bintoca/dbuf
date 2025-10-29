@@ -78,7 +78,7 @@ DBUF describes structures in a way that reduces redundancies (semantic compressi
 
 CSV is very flexible since it could be used with any string, but it has no mechanism for coordination more details semantics.
 
-DBUF provides coordinated extensibility through is symbol registry.
+DBUF provides coordinated extensibility through its symbol registry.
 
 ## CBOR 
 
@@ -122,6 +122,20 @@ DBUF symbols compose more succinctly to minimize definitions and fragmentation.
 
 ## Protocol Buffers
 
-## Cap'n Proto
+#### Types
 
-## Object Identifiers
+Protocol Buffers has its own language for type definitions separate from data encodings, making the encodings only partially self describing. 
+
+DBUF symbols compose in a way that offers the same power as a separate language and can also concisely self describe data.
+
+#### Layout
+
+Protocol Buffers follows a (type, length, value) layout for every item, with some limited forms of packing.
+
+DBUF describes structures in a way that reduces redundancies (semantic compression).
+
+#### Extensibility
+
+Extensions to Protocol Buffers would need breaking changes to its definition language. Its concept of messages is less conducive to defining standardized data types for broad use.
+
+DBUF provides coordinated extensibility through its symbol registry.
