@@ -2,7 +2,7 @@
 
 ID: 38
 
-Used for compression of similar values in arrays by specifing the change of the delta from the previous item.
+Used for compression of similar values in arrays by specifying the change of the delta from the previous item.
 
 ### Examples
 

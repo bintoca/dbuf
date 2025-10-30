@@ -2,9 +2,9 @@
 
 ID: 75
 
-Used for describing a nested entity as an interval in a singluar way instead of a start and end.
+Used for describing a nested entity as an interval in a singular way instead of a start and end.
 
-The boundary sementics are inclusive at the start, exclusive at the end. (E.g. 2019-01-01T00:00:00 <= [Interval of year 2019] < 2020-01-01T00:00:00)
+The boundary semantics are inclusive at the start, exclusive at the end. (E.g. 2019-01-01T00:00:00 <= [Interval of year 2019] < 2020-01-01T00:00:00)
 
 ### Examples
 

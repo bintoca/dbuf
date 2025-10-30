@@ -2,7 +2,7 @@
 
 ID: 37
 
-Used for compression of similar values in arrays by specifing the change from the previous item.
+Used for compression of similar values in arrays by specifying the change from the previous item.
 
 ### Examples
 

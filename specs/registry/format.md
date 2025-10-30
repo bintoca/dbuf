@@ -6,7 +6,7 @@ Describes a data format.
 
 When used in a map with [value](./value.md) describes the format of that value.
 
-If the format value is a fixed bit width unsigned integer or an array of fixed bit width unsigned integers, the bits are interpreted as the type component of a distinct DBUF stream. Any associated [value](./value.md) is interpeted as the data component of a DBUF stream.
+If the format value is a fixed bit width unsigned integer or an array of fixed bit width unsigned integers, the bits are interpreted as the type component of a distinct DBUF stream. Any associated [value](./value.md) is interpreted as the data component of a DBUF stream.
 
 If the format value is the [format](./format.md) symbol, the format is a complete DBUF stream.
 

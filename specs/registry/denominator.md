@@ -2,7 +2,7 @@
 
 ID: 70
 
-Used for the denomiator term in rational numbers.
+Used for the denominator term in rational numbers.
 
 The [value](./value.md) symbol is used for the numerator.
 

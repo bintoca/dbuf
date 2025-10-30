@@ -14,7 +14,7 @@ If x is not zero, consume x symbols as the options.
 
 The values for number of options use offsets so that the minimum number of options is one. This is to avoid ambiguities in the meaning of a choice with zero options.
 
-When encountered in the parsing of a data component: If number of options equals one, consumes zero bits and selects the single option, otherwise consumes the least number of bits that can represent the number of options. The value consumed is a zero based index into the options. If the index is greater than the index of the last option, the last option is selected. Then the list is pushed on to the shared choice stack, which is subsequently poped after the data component rules of the selected option have been executed.
+When encountered in the parsing of a data component: If number of options equals one, consumes zero bits and selects the single option, otherwise consumes the least number of bits that can represent the number of options. The value consumed is a zero based index into the options. If the index is greater than the index of the last option, the last option is selected. Then the list is pushed on to the shared choice stack, which is subsequently popped after the data component rules of the selected option have been executed.
 
 ### Examples
 
