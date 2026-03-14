@@ -4,7 +4,7 @@ Packed Encoding ID: 14
 
 Defines a parsing context that begins with a type component followed by a data component conforming to that type.
 
-When encountered in the parsing of a data component: Consumes a type and data component with semantics identical to the root structure of a DBUF stream.
+When encountered in the parsing of a data component: Consumes a type and data component with semantics identical to the root structure of a packed stream.
 
 Useful for values that can be of any type.
 

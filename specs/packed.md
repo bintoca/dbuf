@@ -1,10 +1,10 @@
-# DBUF Codec
+# Packed Encoding
 
-DBUF is structured as a stream of binary integers. The first few values in a stream correspond to symbols in the [Registry](./registry/README.md) that describe the size and meaning of values later in the stream. The symbols also compose in ways that can describe nested or repeating patterns with dense packing.
+A DBUF packed stream is structured as a sequence of binary integers. The first few values in a stream correspond to symbols in the [Registry](./registry/README.md) that describe the size and meaning of values later in the stream. The symbols also compose in ways that can describe nested or repeating patterns with dense packing.
 
 ## Varints
 
-Several areas of the DBUF spec refer to a default variable length integer encoding or "varint" for short. The following bit patterns specify the 5 possible bit widths:
+Several areas of the packed encoding spec refer to a default variable length integer encoding or "varint" for short. The following bit patterns specify the 5 possible bit widths:
 
 - Leading bit 0 - 3 data bits
 - Leading bits 10 - 6 data bits
@@ -23,11 +23,11 @@ The first byte (or fifth byte if the 4 byte magic number was present) may contai
 
 ## Root Structure
 
-After the optional prefixes, a DBUF stream consists of two parts, a type component that defines a structure and a data component with data that conforms to the type component.
+After the optional prefixes, a packed stream consists of two parts, a type component that defines a structure and a data component with data that conforms to the type component.
 
 Some symbols consume additional bits and/or additional symbols which create nested structures. The type component consists of one symbol and its nested children. The data component begins directly after, following the rules of the root symbol of the type component.
 
-The end of the data component is considered the end of the DBUF stream. Any data in the bit stream after this point MUST be ignored. A DBUF stream contains exactly one type component and one data component, never a sequence of type/data components. If a sequence is desired, the type component should use an appropriate structure such as [type_array](./registry/type_array.md)
+The end of the data component is considered the end of the packed stream. Any data in the bit stream after this point MUST be ignored. A packed stream contains exactly one type component and one data component, never a sequence of type/data components. If a sequence is desired, the type component should use an appropriate structure such as [type_array](./registry/type_array.md)
 
 ## Symbols with unique parsing rules
 
@@ -47,3 +47,17 @@ The end of the data component is considered the end of the DBUF stream. Any data
 - [parse_align](./registry/parse_align.md)
 - [parse_type_data](./registry/parse_type_data.md)
 - [parse_bytes](./registry/parse_bytes.md)
+- [little_endian_marker](./registry/little_endian_marker.md)
+
+
+## Symbols with second level packing rules
+
+- [copy_length](./registry/copy_length.md)
+- [copy_distance](./registry/copy_distance.md)
+- [flatten_array](./registry/flatten_array.md)
+- [delta](./registry/delta.md)
+- [delta_double](./registry/delta_double.md)
+- [offset_add](./registry/offset_add.md)
+- [prefix](./registry/prefix.md)
+- [suffix](./registry/suffix.md)
+- [prefix_delta](./registry/prefix_delta.md)

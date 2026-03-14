@@ -4,7 +4,7 @@ Registry ID: 70
 
 Packed Encoding ID: 96
 
-Error for a DBUF stream that ended without completing the semantic root structure.
+Error for a DBUF stream that ended without completing the semantic structure.
 
 ### Packed Encoding Examples
 

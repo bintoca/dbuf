@@ -4,7 +4,7 @@ Packed Encoding ID: 7
 
 Defines a parsing context that begins with a type component followed by a data component conforming to that type. The parsing context begins immediately after this symbol.
 
-The semantics are identical to the root structure of a DBUF stream.
+The semantics are identical to the root structure of a packed stream.
 
 ### Packed Encoding Examples
 

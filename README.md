@@ -18,7 +18,9 @@ DBUF is a data specification forming the basis of a community of software and to
 
 ## Specifications
 
-- [Codec](./specs/codec.md)
+- [Basic Encoding](./specs/basic.md)
+
+- [Packed Encoding](./specs/packed.md)
 
 - [Symbol Registry](./specs/registry/README.md)
 
