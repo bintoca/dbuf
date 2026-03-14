@@ -6,8 +6,6 @@ The cornerstone of collaboration is exchanging data. Various approaches to encod
 
 DBUF takes a more integrated approach with composable symbols for describing data structures. A carefully crafted set of baseline symbols form a comprehensive type system. The semantics are layered in a way that simpler implementations can be achieved by only using a subset of the baseline symbols. There are no syntax errors at the encoding layer of DBUF. All bit patterns have well defined meanings. 
 
-The descriptive elements are encoded at the beginning of a data stream. This enables dynamically adaptive systems and semantic compression techniques. For aggressive optimization, protocols can define descriptive elements out of band. This provides the lowest overhead while still benefiting from common semantics.
-
 Binary formats are generally not considered human readable, leading many use cases to opt for a textual format. DBUF's layer semantics are intended to help bridge that gap. Input and editing interfaces can still be textual as long as they provide a reliable two-way transformation with binary DBUF. That way many textual formats, each tailored to different use cases, can share semantics.
 
 ## Symbol Registry
@@ -18,7 +16,15 @@ Encoding as integers provides a compact representation even in the most minimal 
 
 Having one global registry creates some centralization but it's an opportunity to create a space to come together and collaborate.
 
-## Customizable Bit Widths
+## Extensible Encoding
+
+No single encoding can be optimal for all use cases so the symbol registry is designed to compose with multiple encodings. Any encoding that has a concept of maps, arrays and symbols (separate from integers) can reuse the DBUF semantics.
+
+Two encodings are currently specified providing strong coverage of use cases:
+- [Basic](../specs/basic.md) - minimal type-length-value encoding
+- [Packed](../specs/packed.md) - advanced structural descriptions for optimized use cases
+
+## Customizable Bit Widths (Packed Encoding)
 
 Most binary formats define data in multiples of 8 bits. This is for simplicity of implementations written against the 8-bit load/store instructions of most hardware. The downside of that approach is that values are likely to have unused bits. The lack of adaptability also leads to fragmentation into alternative formats for optimized use cases.
 
@@ -26,11 +32,11 @@ DBUF includes mechanisms to define values of any bit width. While the lack of 8-
 
 DBUF also envisions a future where hardware instructions are not solely 8-bit oriented. It should be feasible to define instructions that read an arbitrary number of bits from a bit level pointer. This would alleviate throughput concerns for unaligned data.
 
-## Varints
+## Varints (Packed Encoding)
 
 Variable length integers are a common feature of binary formats, providing compact encodings for smaller integers that tend to occur more often than larger integers. Most formats use 8-bit aligned varints, e.g. base128 with seven data bits and one flag bit.
 
-DBUF has a more aggressive [varint](../specs/codec.md) format that is 4-bit aligned. This is justified by the high rate of occurrence of numbers 0-7 that can then occupy just 4-bits and provide a significant overall gain in density.
+DBUF has a more aggressive [varint](../specs/packed.md) format that is 4-bit aligned. This is justified by the high rate of occurrence of numbers 0-7 that can then occupy just 4-bits and provide a significant overall gain in density.
 
 4-bit alignment has a slight impact on encoding/decoding speed but can still be optimized enough for most use cases. For maximum optimization, varints only need to be used in descriptive elements, with bulk data having a different preferred alignment. 
 
@@ -38,7 +44,7 @@ The maximum payload of a varint is 32-bits. This predictability allows for optim
 
 Another long term goal is that the above characteristics make it attractive to create new hardware instructions for varint decoding. Presumably those instructions would be faster than the software implementations of any possible varint format.
 
-## Maps
+## Maps (Packed Encoding)
 
 Descriptions of maps (meaning associative arrays or collections of key/value pairs) are composed with all the keys first, then the data types of all the values, then lastly the values themselves. 
 
@@ -46,7 +52,7 @@ This separation allows for reusable descriptions such as an array of maps that a
 
 Having keys and types at the forefront also allows protocols to reject unsupported data without reading an entire dataset. Even more advanced scenarios like JIT compilation based on incoming data types is also possible.
 
-## Arrays
+## Arrays (Packed Encoding)
 
 Descriptions of arrays are composable with other symbols to form nestable structures.
 
@@ -57,7 +63,7 @@ There are four array definition symbols each geared to different use cases:
 - [type_array_fixed](../specs/registry/type_array_fixed.md) - Takes a fixed size for the array length. Intended for arrays with repetitive lengths such are matrixes.
 - [type_array_chunk](../specs/registry/type_array_chunk.md) - Intended for arrays of unknown length such as streaming data. 
 
-## Type Choice
+## Type Choice (Packed Encoding)
 
 The data types and values in a given dataset are often constrained or have some form of commonality. Programming languages typically address this with enums or union types. DBUF integrates this concept with high composability through the [type_choice](../specs/registry/type_choice.md) symbol.
 
@@ -69,23 +75,23 @@ Choices can also be nested which can then form the equivalent of Huffman codes. 
 
 [type_choice_shared](../specs/registry/type_choice_shared.md) and [type_choice_select](../specs/registry/type_choice_select.md) provide an additional layer of functionality describing recursive data types and dictionary like compression.
 
-## Type Optional
+## Type Optional (Packed Encoding)
 
 Fields that may or may not have a value are so common that it justifies a shorthand symbol. [type_optional](../specs/registry/type_optional.md) is semantically equivalent to a [type_choice](../specs/registry/type_choice.md) of [nonexistent](../specs/registry/nonexistent.md) and a given data type.
 
-## Text Strings
+## Text Strings (Packed Encoding)
 
 With the [parse_text](../specs/registry/parse_text.md) symbol, text is encoded as an array of UTF8 bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
 
 Custom text encodings other than UTF8 can be described with the [text](../specs/registry/text.md) symbol attached to more specialized arrays.
 
-## Byte Strings
+## Byte Strings (Packed Encoding)
 
 With the [parse_bytes](../specs/registry/parse_bytes.md) symbol, data is encoded as an array of bytes. Since other values in a DBUF stream may not be aligned to 8-bit boundaries, implicit padding bits enforce alignment. The padding can amount to modest overhead for some datasets but is warranted given the optimized copy routines of 8-bit aligned hardware.
 
 Compressed byte streams can be described with the [bytes](../specs/registry/bytes.md) symbol attached to more specialized arrays.
 
-## Endianness
+## Endianness (Packed Encoding)
 
 Since DBUF allows values of any bit width, it is necessary to define the order that bits are consumed from a stream. There is an unfortunate dilemma that most internet protocols use network byte order (big endian) while a large share of current hardware is little endian. For the sake of broad adoption DBUF makes this choice self-describing with the presence or absence of the prefix symbol [little_endian_marker](../specs/registry/little_endian_marker.md). 
 
@@ -99,7 +105,7 @@ The [nonexistent](../specs/registry/nonexistent.md) symbol is a placeholder for 
 
 The [describe_no_value](../specs/registry/describe_no_value.md) symbol is a placeholder that should not be elided in heterogeneous data. When used in a map, the key does exist. It can also be extended to embed another value as a reason why there is no value. 
 
-## Alignment
+## Alignment (Packed Encoding)
 
 The [parse_align](../specs/registry/parse_align.md) symbol wraps another data type to create a desired alignment at any position it appears.
 

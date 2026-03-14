@@ -12,7 +12,7 @@ DBUF has a composable type system that covers far more data types. Flexible bina
 
 JSON has a basic verbose layout. In an array of similar maps, each map repeats its keys. External compression is needed to reduce the impact of this verbosity.
 
-DBUF describes structures in a way that reduces redundancies (semantic compression).
+DBUF packed encoding describes structures in a way that reduces redundancies (semantic compression).
 
 #### Extensibility 
 
@@ -32,7 +32,7 @@ DBUF has a composable type system that can create more adaptive descriptions of 
 
 XML has a verbose nested layout. In an array of similar maps, each map repeats its keys. Element names are repeated in opening and closing tags. External compression is needed to reduce the impact of this verbosity. The separation of attributes and child elements creates a mismatch with other type systems.
 
-DBUF describes structures in a way that reduces redundancies (semantic compression). All structures logically unpack to maps and arrays, which aligns better with other type systems.
+DBUF packed encoding describes structures in a way that reduces redundancies (semantic compression). All structures logically unpack to maps and arrays, which aligns better with other type systems.
 
 #### Extensibility 
 
@@ -72,7 +72,7 @@ DBUF has a composable type system that can create more precise and standardized 
 
 CSV is delimited text forming rows and columns. Its perceived simplicity often leads to bugs with escaping and encoding.
 
-DBUF describes structures in a way that reduces redundancies (semantic compression). Its precise rules encourage well tested libraries and consistent implementations.
+DBUF packed encoding describes structures in a way that reduces redundancies (semantic compression). Its precise rules encourage well tested libraries and consistent implementations.
 
 #### Extensibility
 
@@ -92,7 +92,7 @@ DBUF has a composable type system that can create more precise and standardized 
 
 CBOR follows a (type, length, value) layout for every item. Some commonly used values can be packed into a single byte. In an array of similar maps, each map repeats its keys. External compression is needed to reduce the impact of this verbosity. CBOR tags must encapsulate another item so the minimum size of a tagged value is two bytes. 
 
-DBUF describes structures in a way that reduces redundancies (semantic compression). DBUF prioritizes the encoding of symbols to be more compact than CBOR tags.
+DBUF packed encoding describes structures in a way that reduces redundancies (semantic compression). DBUF prioritizes the encoding of symbols to be more compact than CBOR tags.
 
 #### Extensibility
 
@@ -112,7 +112,7 @@ DBUF symbols compose in a way that offers the same power as a separate language 
 
 ASN.1 follows a (type, length, value) layout for every item. Lengths include the size of nested items.
 
-DBUF describes structures in a way that reduces redundancies (semantic compression).
+DBUF packed encoding describes structures in a way that reduces redundancies (semantic compression).
 
 #### Extensibility
 
@@ -132,7 +132,7 @@ DBUF symbols compose in a way that offers the same power as a separate language 
 
 Protocol Buffers follows a (type, length, value) layout for every item, with some limited forms of packing.
 
-DBUF describes structures in a way that reduces redundancies (semantic compression).
+DBUF packed encoding describes structures in a way that reduces redundancies (semantic compression).
 
 #### Extensibility
 
